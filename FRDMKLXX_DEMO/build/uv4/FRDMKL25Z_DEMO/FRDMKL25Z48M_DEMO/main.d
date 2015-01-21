@@ -22,3 +22,16 @@
 .\frdmkl25z48m_demo\main.o: ..\..\..\src\main.h
 .\frdmkl25z48m_demo\main.o: ..\..\..\src\frdmkl25z48m\derivative.h
 .\frdmkl25z48m_demo\main.o: ..\..\..\src\frdmkl25z48m\MKL25Z4.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\gpio_defs.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\LEDs.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\i2c.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\mma8451.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\delay.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\timers.h
+.\frdmkl25z48m_demo\main.o: ..\..\..\src\MKL25Z4s.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\frdmkl25z48m_demo\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL25Z4.h

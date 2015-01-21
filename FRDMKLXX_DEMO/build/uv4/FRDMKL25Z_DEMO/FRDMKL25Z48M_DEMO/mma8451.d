@@ -1,0 +1,11 @@
+.\frdmkl25z48m_demo\mma8451.o: ..\..\..\src\mma8451.c
+.\frdmkl25z48m_demo\mma8451.o: ..\..\..\src\MKL25Z4s.H
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\CMSIS\Include\core_cm0plus.h
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.4.0\Device\Include\system_MKL25Z4.h
+.\frdmkl25z48m_demo\mma8451.o: ..\..\..\src\mma8451.h
+.\frdmkl25z48m_demo\mma8451.o: ..\..\..\src\i2c.h
+.\frdmkl25z48m_demo\mma8451.o: ..\..\..\src\delay.h
+.\frdmkl25z48m_demo\mma8451.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

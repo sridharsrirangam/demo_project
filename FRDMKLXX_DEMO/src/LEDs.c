@@ -1,4 +1,4 @@
-#include <MKL25Z4.H>
+#include <MKL25Z4s.H>
 #include "LEDs.h"
 #include "gpio_defs.h"
 

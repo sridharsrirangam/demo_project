@@ -28,9 +28,9 @@
 #include "board.h"
 #include "app_init.h"
 #include "events.h"
-
+#include "timers.h"
 extern uint16_t u16LPcounter;
-
+extern unsigned LCD_update_delay;
 /**
  * \brief TSS callback for control 0
  *
@@ -53,7 +53,7 @@ void TSS1_fCallBack1(TSS_CONTROL_ID u8ControlId)
   /* Set LED brightness */
 	
 int i;
-if(cASlider1.Position>10)
+/*if(cASlider1.Position>10)
 {
 for(i=0;i<=cASlider1.Position;i++)
 	{
@@ -64,17 +64,18 @@ for(i=0;i<=cASlider1.Position;i++)
  
 	}
 	
-for(i=100;i>=0;i--)
+for(i=cASlider1.Position;i>=0;i--)
 	{
   SET_LED_RED(i);
 	SET_LED_GREEN(i);
 	SET_LED_BLUE(i);
 		DelayMS(20);
-	}}
- /* SET_LED_RED(cASlider1.Position);
+	}}*/
+ SET_LED_RED(cASlider1.Position);
   SET_LED_GREEN(cASlider1.Position);
-  SET_LED_BLUE(cASlider1.Position);*/
-
+  SET_LED_BLUE(cASlider1.Position);
+LCD_update_delay = 100;
+		Start_PIT();
   (void)u8ControlId;
 }
 
