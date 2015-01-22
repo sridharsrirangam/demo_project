@@ -31,6 +31,7 @@
 #include "timers.h"
 extern uint16_t u16LPcounter;
 extern unsigned LCD_update_delay;
+extern int z;
 /**
  * \brief TSS callback for control 0
  *
@@ -52,32 +53,29 @@ void TSS1_fCallBack1(TSS_CONTROL_ID u8ControlId)
 {
   /* Set LED brightness */
 	
-int i;
-/*if(cASlider1.Position>10)
-{
-for(i=0;i<=cASlider1.Position;i++)
+	if(cASlider1.Position<1)
 	{
-  SET_LED_RED(i);
-  SET_LED_GREEN(i);
-	SET_LED_BLUE(i);
-		DelayMS(20);
- 
+		SET_LED_RED(0);
+		SET_LED_BLUE(0);
+		SET_LED_GREEN(0);
 	}
+
 	
-for(i=cASlider1.Position;i>=0;i--)
+	if(cASlider1.Position>=1)
 	{
-  SET_LED_RED(i);
-	SET_LED_GREEN(i);
-	SET_LED_BLUE(i);
-		DelayMS(20);
-	}}*/
- SET_LED_RED(cASlider1.Position);
-  SET_LED_GREEN(cASlider1.Position);
-  SET_LED_BLUE(cASlider1.Position);
-LCD_update_delay = 100;
+		if(z==0)
+		{
+			fade_in();
+		}
+		SET_LED_RED(cASlider1.Position);
+		SET_LED_GREEN(cASlider1.Position);
+		SET_LED_BLUE(cASlider1.Position);
+		LCD_update_delay = 100;
 		Start_PIT();
-  (void)u8ControlId;
+  }
+(void)u8ControlId;
 }
+
 
 /**
  * \brief TSS on fault callback

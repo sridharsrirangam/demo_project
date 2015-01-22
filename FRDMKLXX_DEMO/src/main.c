@@ -40,7 +40,7 @@
 #include "timers.h"
 
 unsigned LCD_update_delay = 100;
-int i;
+int z,i; //z is a variable used to branch fade-in function to control unecessary fading
 uint16_t u16LPcounter = 0u;
 
 /*********************** GUI - FreeMASTER TSA table ************************/
@@ -68,11 +68,12 @@ uint16_t u16LPcounter = 0u;
  * \return int
  */
  
+ float vref;
  
 int main (void)
-{ int j,k,l;
+{ int isBrdTiltd=0;
   InitPorts();
-	Init_PIT(2400000); //real value should be 2400000
+	Init_PIT(2400000); // value for 10sec delay should be 2400000
   i2c_init();
 		if (!init_mma()) {												/* init mma peripheral */
 		//Control_RGB_LEDs(1, 0, 0);							/* Light red error LED */
@@ -132,49 +133,34 @@ for(i=0;i<100;i++)
 	
 		
     
-#if 1
-//Init_RGB_LEDs();
-																	/* init i2c	*/
+	#if 1
 
-	
-	
-	
-	//while (1) 
 		
 		read_full_xyz();
 		convert_xyz_to_roll_pitch();
 	
-		// Light green LED if pitch > 10 degrees
-		// Light blue LED if roll > 10 degrees
-		/*Control_RGB_LEDs(0, (fabs(roll) > 30)? 1:0,(fabs(pitch) > 10)? 1:0);*/
-if(fabs(roll)>33||fabs(pitch)>33)
-	{
-		while(i<cASlider1.Position)
-		{
-			SET_LED_RED(i);
-			SET_LED_GREEN(i);
-			SET_LED_BLUE(i);
-			DelayMS(30);
-			i++;
-		}
-		SET_LED_RED(cASlider1.Position);
-			SET_LED_GREEN(cASlider1.Position);
-			SET_LED_BLUE(cASlider1.Position);
-		LCD_update_delay = 100;
-		Start_PIT();
-		//Control_RGB_LEDs(1,1,1);
-		//Delay(200);
-	}
-	/*else
-	{
-	SET_LED_RED(0);
-  SET_LED_GREEN(0);
-	SET_LED_BLUE(0);
-		//Control_RGB_LEDs(0,0,0);
-	}*/
+		
+		if(((fabs(roll)<25&&fabs(pitch<25)))&&isBrdTiltd==1)
+			{
+				isBrdTiltd=0;
+				Stop_PIT();
+				fade_off();
+			}	
+		if((fabs(roll)>33||fabs(pitch)>33)&&isBrdTiltd==0)
+			{
+				fade_in();
+				SET_LED_RED(cASlider1.Position);
+				SET_LED_GREEN(cASlider1.Position);
+				SET_LED_BLUE(cASlider1.Position);
+				isBrdTiltd=1;
+				LCD_update_delay = 100;
+				Start_PIT();
+			}
+	//vref=Measure_VRail();
  
 	#endif
 	
     /* Write your code here ... */
   
-}}
+}
+}

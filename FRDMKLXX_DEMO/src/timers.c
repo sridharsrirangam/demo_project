@@ -9,7 +9,33 @@
 volatile unsigned PIT_interrupt_counter = 0;
 volatile unsigned LCD_update_requested = 0;
 	extern unsigned LCD_update_delay;
-	extern int i;
+	extern int z;
+	
+		
+	
+	void fade_in(void) 
+{
+	while(z<cASlider1.Position)
+		{
+			SET_LED_RED(z);
+			SET_LED_GREEN(z);
+			SET_LED_BLUE(z);
+			DelayMS(20);
+			z++;
+		}
+	}
+
+	void fade_off(void)
+{
+	int j;
+	for(j=cASlider1.Position;j>=0;j--)				
+		{
+			SET_LED_RED(j);
+			SET_LED_GREEN(j);
+			SET_LED_BLUE(j);
+				DelayMS(20);
+		}
+	}
 void Init_PIT(unsigned period) {
 	// Enable clock to PIT module
 	SIM->SCGC6 |= SIM_SCGC6_PIT_MASK;
@@ -51,7 +77,8 @@ int j;
 	NVIC_ClearPendingIRQ(PIT_IRQn);
 	
 	// check to see which channel triggered interrupt 
-	if (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) {
+	if (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) 
+		{
 		// clear status flag for timer channel 0
 		PIT->CHANNEL[0].TFLG &= PIT_TFLG_TIF_MASK;
 		
@@ -60,24 +87,16 @@ int j;
 		LCD_update_delay--;
 		if (LCD_update_delay == 0) 
 			{
-				/*SET_LED_RED(0);
-			SET_LED_GREEN(0);
-			SET_LED_BLUE(0);*/
-			for(j=cASlider1.Position;j>=0;j--)				
-		{
-			SET_LED_RED(j);
-			SET_LED_GREEN(j);
-			SET_LED_BLUE(j);
-				DelayMS(20);
-		}
-	i=0;	
-			
-			
-		}
-	} else if (PIT->CHANNEL[1].TFLG & PIT_TFLG_TIF_MASK) {
+				fade_off();
+				z=0;
+				DelayMS(500);	
+			}
+	} 
+	else if (PIT->CHANNEL[1].TFLG & PIT_TFLG_TIF_MASK) {
 		// clear status flag for timer channel 1
 		PIT->CHANNEL[1].TFLG &= PIT_TFLG_TIF_MASK;
 	} 
 }
+
 
 // *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   
